@@ -21,29 +21,28 @@ public class KeyPad : MonoBehaviour
 
     public void OnKeyPadButtonTap(int index)
     {
-        switch (index)
+        text.text = index == 0 ? "" : text.text;
+        appendText = index switch
         {
-            case 0: text.text = ""; appendText = "0"; break;
-            case 1: break;
-            case 2: break;
-            case 3: appendText = "%"; break;
-            case 4: appendText = "7"; break;
-            case 5: appendText = "8"; break;
-            case 6: appendText = "9"; break;
-            case 7: appendText = "X"; break;
-            case 8: appendText = "6"; break;
-            case 9: appendText = "5"; break;
-            case 10: appendText = "4"; break;
-            case 11: appendText = "-"; break;
-            case 12: appendText = "1"; break;
-            case 13: appendText = "2"; break;
-            case 14: appendText = "3"; break;
-            case 15: appendText = "+"; break;
-            case 16: break;
-            case 17: appendText = "0"; break;
-            case 18: appendText = "."; break;
-            case 19: appendText = "="; break;
-        }
+            0 => "0",
+            3 => "%",
+            4 => "7",
+            5 => "8",
+            6 => "9",
+            7 => "X",
+            8 => "6",
+            9 => "5",
+            10 => "4",
+            11 => "-",
+            12 => "1",
+            13 => "2",
+            14 => "3",
+            15 => "+",
+            17 => "0",
+            18 => ".",
+            19 => "=",
+            _ => appendText // for unused indexes
+        };
 
         Debug.Log($"appendText - {appendText}");
 
@@ -111,6 +110,7 @@ public class KeyPad : MonoBehaviour
 
         for (int i = 0; i < ops.Count; i++)
         {
+            Debug.Log("FOR DIVISION");
             Debug.Log("nums -> " + nums.Count + " -> " + i);
             Debug.Log("nums i -> " + nums[i]);
             Debug.Log("ops -> " + ops.Count + " -> " + i);
@@ -122,14 +122,30 @@ public class KeyPad : MonoBehaviour
                 ops.RemoveAt(i);
                 i--;
             }
-            else if (ops[i] == '*' && i < nums.Count - 1)
+        }
+        for (int i = 0; i < ops.Count; i++)
+        {
+            Debug.Log("FOR MULTIPLICATION");
+            Debug.Log("nums -> " + nums.Count + " -> " + i);
+            Debug.Log("nums i -> " + nums[i]);
+            Debug.Log("ops -> " + ops.Count + " -> " + i);
+            Debug.Log("ops i -> " + ops[i]);
+            if (ops[i] == 'X' && i < nums.Count - 1)
             {
                 nums[i] = nums[i] * nums[i + 1];
                 nums.RemoveAt(i + 1);
                 ops.RemoveAt(i);
                 i--;
             }
-            else if (ops[i] == '+' && i < nums.Count - 1)
+        }
+        for (int i = 0; i < ops.Count; i++)
+        {
+            Debug.Log("FOR ADD AND SUBSTRACT");
+            Debug.Log("nums -> " + nums.Count + " -> " + i);
+            Debug.Log("nums i -> " + nums[i]);
+            Debug.Log("ops -> " + ops.Count + " -> " + i);
+            Debug.Log("ops i -> " + ops[i]);
+            if (ops[i] == '+' && i < nums.Count - 1)
             {
                 nums[i] = nums[i] + nums[i + 1];
                 nums.RemoveAt(i + 1);
