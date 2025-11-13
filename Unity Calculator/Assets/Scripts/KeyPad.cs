@@ -41,7 +41,7 @@ public class KeyPad : MonoBehaviour
             17 => "0",
             18 => ".",
             19 => "=",
-            _ => appendText // for unused indexes
+            _ => break; // for unused indexes
         };
 
         Debug.Log($"appendText - {appendText}");
