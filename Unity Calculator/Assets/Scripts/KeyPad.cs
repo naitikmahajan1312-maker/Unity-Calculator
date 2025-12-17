@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class KeyPad : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class KeyPad : MonoBehaviour
             17 => "0",
             18 => ".",
             19 => "=",
-            _ => break; // for unused indexes
+            _ => null, // for unused indexes
         };
 
         Debug.Log($"appendText - {appendText}");
